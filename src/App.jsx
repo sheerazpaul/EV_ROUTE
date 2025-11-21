@@ -11,7 +11,7 @@ import Garage from "./pages/Garage";
 import DashboardPage from "./Components/DashboardPage";
 function MainLayout({ children }) {
   return (
-    <div className="h-full w-full bg-[#101922] overflow-x-hidden">
+    <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
       <Navbar />
       {children}
       <Footer />

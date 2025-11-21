@@ -16,11 +16,11 @@ function SignUp() {
         </div>
 
         <div className='flex flex-col gap-1 w-full md:w-auto px-4 sm:px-6 md:px-0'>
-          <h1 className='text-white font-bold text-3xl mt-10 md:mt-24 font-sans'>Create Your Account</h1>
-          <p className='text-gray-400 mb-3'>Find charging stations and plan your next journey with ease</p>
+          <h1 className='dark:text-white font-bold text-3xl mt-10 md:mt-24 font-sans text-gray-900'>Create Your Account</h1>
+          <p className='dark:text-gray-400 mb-3 text-gray-900'>Find charging stations and plan your next journey with ease</p>
 
           <div className='flex flex-col gap-2'>
-            <h1 className='text-white mt-1 font-semibold'>Username</h1>
+            <h1 className='dark:text-white mt-1 font-semibold text-gray-900'>Username</h1>
             <Input
               isClearable
               key="outside"
@@ -40,7 +40,7 @@ function SignUp() {
 
           <div className='flex flex-col sm:flex-row gap-3'>
             <div className='flex flex-col gap-2 w-full sm:w-auto'>
-              <h1 className='text-white mt-1 font-semibold'>First Name</h1>
+              <h1 className='dark:text-white mt-1 font-semibold text-gray-900 '>First Name</h1>
               <Input
                 isClearable
                 key="outside"
@@ -59,7 +59,7 @@ function SignUp() {
             </div>
 
             <div className='flex flex-col gap-2 w-full sm:w-auto'>
-              <h1 className='text-white mt-1 font-semibold'>Last Name</h1>
+              <h1 className='dark:text-white mt-1 font-semibold text-gray-900'>Last Name</h1>
               <Input
                 isClearable
                 key="outside"
@@ -79,7 +79,7 @@ function SignUp() {
           </div>
 
           <div className="flex flex-col gap-2 mb-3">
-            <h1 className="text-white mt-1 font-semibold">Email</h1>
+            <h1 className="dark:text-white mt-1 font-semibold text-gray-900">Email</h1>
             <Input
               isClearable
               key="outside"
@@ -99,7 +99,7 @@ function SignUp() {
 
           <div className='flex flex-col sm:flex-row gap-3'>
             <div className='flex flex-col gap-2 w-full sm:w-auto'>
-              <h1 className='text-white mt-1 font-semibold'>Password</h1>
+              <h1 className='dark:text-white mt-1 font-semibold text-gray-900'>Password</h1>
               <Input
                 isClearable
                 key="outside"
@@ -118,7 +118,7 @@ function SignUp() {
             </div>
 
             <div className='flex flex-col gap-2 w-full sm:w-auto'>
-              <h1 className='text-white mt-1 font-semibold'>Confirm Password</h1>
+              <h1 className='dark:text-white mt-1 font-semibold text-gray-900'>Confirm Password</h1>
               <Input
                 isClearable
                 key="outside"

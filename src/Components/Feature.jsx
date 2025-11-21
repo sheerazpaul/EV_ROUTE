@@ -3,14 +3,17 @@ import Box from "./box";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap} from '@fortawesome/free-regular-svg-icons';
 import { faRoute, faClockRotateLeft, faComment  } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 function Feature() {
+  const { dark } = useContext(ThemeContext);
   return (
-    <div className="flex flex-col gap-6 text-white justify-center items-center mt-10 px-4 md:px-8">
+    <div className="flex flex-col gap-6 dark:text-white text-gray-900 justify-center items-center mt-10 px-4 md:px-8">
      
       <h1 className="text-2xl md:text-3xl font-bold leading-tight text-center">
         Why Choose EV Route?
       </h1>
-      <p className="text-sm md:text-base text-center max-w-2xl text-gray-300">
+      <p className="text-sm md:text-base text-center max-w-2xl dark:text-gray-300 text-gray-900">
         Our intelligent platform provides all the tools to make your electric
         journey seamless and stress-free.
       </p>

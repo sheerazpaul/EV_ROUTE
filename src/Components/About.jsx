@@ -6,7 +6,7 @@ import { faLocationDot, faChargingStation,faCar } from '@fortawesome/free-solid-
 function About() { 
   return (
    <div className="flex justify-center items-center flex-col">
-  <h1 className="text-2xl text-white font-bold mt-5 text-center md:text-left">
+  <h1 className="text-2xl dark:text-white text-gray-900 font-bold mt-5 text-center md:text-left">
     Get Started in Three Easy Ways
   </h1>
   <div className="flex flex-col md:flex-row justify-between w-full max-w-[1000px] mt-5 gap-5 px-4">

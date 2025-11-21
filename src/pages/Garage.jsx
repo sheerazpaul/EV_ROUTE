@@ -13,7 +13,7 @@ function Garage() {
   return (
     <>
       <div className="ml-6 max-w-full md:ml-6  px-2">
-  <h1 className="text-white font-bold text-4xl">Add Your Vehicle</h1>
+  <h1 className="dark:text-white text-gray-900 font-bold text-4xl">Add Your Vehicle</h1>
   <p className="text-gray-500 mt-2">
     Select your vehicle's make and model to automatically add its details.
   </p>
@@ -30,7 +30,7 @@ function Garage() {
         src="/images/car-3.jpg"
         alt=""
       />
-      <h1 className="text-white font-semibold">Tesla Model 3 Long Range</h1>
+      <h1 className="dark:text-white text-gray-900 font-semibold">Tesla Model 3 Long Range</h1>
       <p className="text-gray-500 text-sm">
         your selected vehicle details are dispalyed below.
       </p>

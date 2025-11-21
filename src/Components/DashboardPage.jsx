@@ -9,14 +9,14 @@ function DashboardPage() {
     <>
  <div className="flex-1 p-6">
           <div className="flex flex-col lg:flex-row">
-            <h2 className="text-2xl font-bold text-white mb-4">
+            <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-4">
               Welcome Back, Sarah!
             </h2>
             <div className="lg:ml-auto flex flex-col sm:flex-row gap-2">
               <Button
                 color="primary"
                 variant="solid"
-                className="font-semibold text-white mt-2"
+                className="font-semibold dark:text-white text-gray-900 mt-2"
                 startContent={<FontAwesomeIcon icon={faRoute} />}
               >
                 Plan a New Trip
@@ -24,7 +24,7 @@ function DashboardPage() {
               <Button
                 color="primary"
                 variant="bordered"
-                className="font-semibold text-white mt-2"
+                className="font-semibold dark:text-white text-gray-900 mt-2"
                 startContent={<FontAwesomeIcon icon={faChargingStation} />}
               >
                 Find a Charger
@@ -32,10 +32,10 @@ function DashboardPage() {
             </div>
           </div>
 
-          <h3 className="text-white font-semibold mb-3">My Garage</h3>
+          <h3 className="dark:text-white text-gray-900 font-semibold mb-3">My Garage</h3>
           <div className="flex flex-col md:flex-row h-auto md:h-[170px] w-full md:w-[550px] border-1 border-gray-600 shadow-sm rounded-lg p-4 gap-2">
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <h3 className="text-xl font-semibold dark:text-white text-gray-900 mb-2">
                 My Tesla Model 3
               </h3>
               <Progress
@@ -49,7 +49,7 @@ function DashboardPage() {
               <Button
                 color="primary"
                 variant="bordered"
-                className="font-semibold text-white hover:text-blue-800 mt-2"
+                className="font-semibold dark:text-white text-gray-900 hover:text-blue-800 mt-2"
                 startContent={<FontAwesomeIcon icon={faArrowRightArrowLeft} />}
               >
                 Change Vehicle
@@ -64,7 +64,7 @@ function DashboardPage() {
             </div>
           </div>
 
-          <h3 className="text-white font-semibold mb-3 mt-5">Recent Trips</h3>
+          <h3 className="dark:text-white text-gray-900 font-semibold mb-3 mt-5">Recent Trips</h3>
           <div>
             <TripBox />
           </div>

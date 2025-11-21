@@ -11,10 +11,10 @@ export default function ListDetail({ head, model }) {
 
   return (
     <div className="flex flex-col gap-2 w-full max-w-[350px]">
-      <h1 className="text-white font-semibold">{head}</h1>
+      <h1 className="dark:text-white text-gray-900 font-semibold">{head}</h1>
       <Dropdown>
         <DropdownTrigger>
-          <Button className="capitalize w-full text-white" variant="bordered" color="primary">
+          <Button className="capitalize w-full dark:text-white text-gray-900" variant="bordered" color="primary">
             {selectedValue}
           </Button>
         </DropdownTrigger>
