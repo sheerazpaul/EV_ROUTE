@@ -30,7 +30,7 @@ function Garage() {
         src="/images/car-3.jpg"
         alt=""
       />
-      <h1 className="dark:text-white text-gray-900 font-semibold">Tesla Model 3 Long Range</h1>
+      <h1 className="dark:text-white text-gray-900 font-bold">Tesla Model 3 Long Range</h1>
       <p className="text-gray-500 text-sm">
         your selected vehicle details are dispalyed below.
       </p>

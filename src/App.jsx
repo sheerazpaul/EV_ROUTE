@@ -2,18 +2,19 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
+import DashboardPage from "./Components/DashboardPage";
+import Garage from "./pages/Garage";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
-import ForgotPassword from "./Components/ForgotPassword";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import Garage from "./pages/Garage";
-import DashboardPage from "./Components/DashboardPage";
+import PrivateRoute from "./Components/PrivateRoute";
+
 function MainLayout({ children }) {
   return (
-    <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      {children}
+      <div className="flex-1">{children}</div>
       <Footer />
     </div>
   );
@@ -30,7 +31,6 @@ function App() {
           </MainLayout>
         }
       />
-
       <Route
         path="/login"
         element={
@@ -39,7 +39,6 @@ function App() {
           </MainLayout>
         }
       />
-
       <Route
         path="/signUp"
         element={
@@ -48,24 +47,17 @@ function App() {
           </MainLayout>
         }
       />
-
       <Route
-        path="/forgot"
+        path="/dashboard"
         element={
-          <MainLayout>
-            <ForgotPassword />
-          </MainLayout>
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
         }
-      />
-      
-  
-      <Route path="/dashboard" element={<Dashboard />}>
-        
-        <Route path="home" element={<DashboardPage />} />
+      >
+        <Route path="dashpage" element={<DashboardPage />} />
         <Route path="garage" element={<Garage />} />
-
       </Route>
- \
     </Routes>
   );
 }
