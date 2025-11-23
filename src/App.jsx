@@ -1,28 +1,42 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
-import DashboardPage from "./Components/DashboardPage";
-import Garage from "./pages/Garage";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
+import ForgotPassword from "./Components/ForgotPassword";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import PrivateRoute from "./Components/PrivateRoute";
+import Garage from "./pages/Garage";
+import DashboardPage from "./Components/DashboardPage";
+import { useAuth } from "./Components/AuthContext";
 
 function MainLayout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
       <Navbar />
-      <div className="flex-1">{children}</div>
+      {children}
       <Footer />
     </div>
   );
 }
 
+// Protected Route Wrapper
+function ProtectedRoute({ children }) {
+  const { user, loading } = useAuth();
+
+  if (loading) return null; // or a loader
+
+  if (!user) return <Navigate to="/login" replace />;
+
+  return children;
+}
+
 function App() {
   return (
     <Routes>
+
+      {/* Public Routes */}
       <Route
         path="/"
         element={
@@ -31,6 +45,7 @@ function App() {
           </MainLayout>
         }
       />
+
       <Route
         path="/login"
         element={
@@ -39,25 +54,40 @@ function App() {
           </MainLayout>
         }
       />
+
       <Route
-        path="/signUp"
+        path="/register"
         element={
           <MainLayout>
             <SignUp />
           </MainLayout>
         }
       />
+
+      <Route
+        path="/forgot"
+        element={
+          <MainLayout>
+            <ForgotPassword />
+          </MainLayout>
+        }
+      />
+
+      {/* PROTECTED DASHBOARD */}
       <Route
         path="/dashboard"
         element={
-          <PrivateRoute>
+          <ProtectedRoute>
             <Dashboard />
-          </PrivateRoute>
+          </ProtectedRoute>
         }
       >
-        <Route path="dashpage" element={<DashboardPage />} />
+        <Route path="home" element={<DashboardPage />} />
         <Route path="garage" element={<Garage />} />
       </Route>
+
+      {/* Redirect unknown routes */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

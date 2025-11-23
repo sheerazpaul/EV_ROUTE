@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../Components/AuthContext";
 
+
 const Dashboard = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -68,13 +69,12 @@ const Dashboard = () => {
               description="Product Designer"
               name="Sarah K."
             />
-
             <Button
               color="primary"
               variant="light"
               className="font-semibold dark:text-white text-gray-900 hover:text-blue-800 mt-2"
               startContent={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
-              onPress={handleLogout}
+               onPress={handleLogout}
             >
               Log Out
             </Button>

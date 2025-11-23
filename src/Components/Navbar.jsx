@@ -36,13 +36,13 @@ function Navbar({ scrollToSection, refs }) {
       <div className="hidden md:flex items-center gap-3">
         <ThemeToggle />
         <Link
-          to="/signUp"
+          to="/register"
           className="h-10 w-24 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition flex justify-center items-center"
         >
           Sign Up
         </Link>
-        <Link
-          to="/login"
+        <Link to="/login"
+         
           className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center"
         >
           Login

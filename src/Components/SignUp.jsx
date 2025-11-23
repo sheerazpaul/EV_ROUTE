@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Input, Button } from '@heroui/react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthContext'
-
 function SignUp() {
   const [name, setName] = useState("")
   const [last, setLast] = useState("")
@@ -11,7 +10,7 @@ function SignUp() {
   const [password, setPassword] = useState("")
   const [confirm, setConfirm] = useState("")
   const [error, setError] = useState("")
-  const { signup } = useAuth()
+  const { registerUser } = useAuth()
   const navigate = useNavigate()
 
   const handleSignUp = async () => {
@@ -21,12 +20,11 @@ function SignUp() {
     }
 
     try {
-      const res = await signup(name + " " + last, email, password) 
-      if (!res.ok) {
-        const errData = await res.json()
-        throw new Error(errData.message || "Registration failed")
+      const res = await registerUser(name, last, username, email, password)
+      if (!res.success) {
+        setError(res.message)
+        return
       }
-
       navigate("/login")
     } catch (err) {
       setError(err.message)
@@ -39,7 +37,9 @@ function SignUp() {
       <div className='flex flex-col gap-1 w-full md:w-auto px-4 sm:px-6 md:px-0'>
         <h1 className='dark:text-white font-bold text-3xl mt-10 md:mt-24 font-sans text-gray-900'>Create Your Account</h1>
         <p className='dark:text-gray-400 mb-3 text-gray-900'>Find charging stations and plan your next journey with ease</p>
+
         {error && <p className="text-red-500 mb-2">{error}</p>}
+
         <div className='flex flex-col gap-2'>
           <h1 className='dark:text-white mt-1 font-semibold text-gray-900'>Username</h1>
           <Input
@@ -50,6 +50,7 @@ function SignUp() {
             className="w-full sm:w-[360px]"
           />
         </div>
+
         <div className='flex flex-col sm:flex-row gap-3'>
           <Input
             placeholder="First Name"
@@ -75,6 +76,7 @@ function SignUp() {
           onValueChange={setEmail}
           className="w-full sm:w-[360px] mt-3"
         />
+
         <div className='flex flex-col sm:flex-row gap-3 mt-3'>
           <Input
             placeholder="Password"
