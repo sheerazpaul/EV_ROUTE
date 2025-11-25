@@ -12,15 +12,16 @@ function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    setError("");
-    const res = await login(user, password);
-    if (res.success) {
-      navigate("/dashboard/home");
-    } else {
-      setError(res.message || "Login failed");
-    }
-  };
+const handleLogin = async () => {
+  const res = await login(user, password);
+
+  if (res.success) {
+    navigate("/dashboard/home"); 
+  } else {
+    setError(res.message);
+  }
+};
+
 
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[300px] px-4 lg:px-10">

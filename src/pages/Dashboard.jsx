@@ -11,6 +11,7 @@ import {
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../Components/AuthContext";
+import ThemeToggle from "../Components/ThemeToggle";
 
 
 const Dashboard = () => {
@@ -43,16 +44,15 @@ const Dashboard = () => {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `font-semibold dark:text-white text-gray-900 hover:text-blue-800 ${
+                  `font-semibold dark:text-white text-white${
                     isActive ? "bg-blue-100 dark:bg-blue-900 rounded-md" : ""
                   }`
                 }
               >
                 <Button
-                  color="primary"
                   variant="light"
                   startContent={<FontAwesomeIcon icon={item.icon} />}
-                  className="w-full text-left"
+                  className="w-full text-left dark:text-white text-gray-900 font-semibold bg-blue-600 hover:bg-blue-200 dark:bg-gray-800 dark:hover:bg-gray-700 "
                 >
                   {item.name}
                 </Button>
@@ -79,6 +79,7 @@ const Dashboard = () => {
               Log Out
             </Button>
           </div>
+          <ThemeToggle/>
         </div>
         <div className="flex-1 p-6">
           <Outlet />

@@ -10,7 +10,7 @@ function Navbar({ scrollToSection, refs }) {
     <nav className="w-full  px-5 py-3 flex items-center justify-between shadow-md fixed
       bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 z-50
     ">
-      <Link to="/">
+      <Link >
         <div className="text-xl font-bold">EV Route</div>
       </Link>
       <div className="hidden md:flex space-x-8 font-medium">
@@ -41,7 +41,7 @@ function Navbar({ scrollToSection, refs }) {
         >
           Sign Up
         </Link>
-        <Link to="/login"
+        <Link 
          
           className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center"
         >
@@ -93,7 +93,6 @@ function Navbar({ scrollToSection, refs }) {
             >
               Login
             </Link>
-            {/* Include ThemeToggle in mobile menu too */}
             <div className="flex justify-center pt-2">
               <ThemeToggle />
             </div>

@@ -9,8 +9,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Garage from "./pages/Garage";
 import DashboardPage from "./Components/DashboardPage";
-import { useAuth } from "./Components/AuthContext";
-
+import ProtectedRoute from "./Components/ProtectedRoute";
 function MainLayout({ children }) {
   return (
     <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
@@ -21,22 +20,9 @@ function MainLayout({ children }) {
   );
 }
 
-// Protected Route Wrapper
-function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth();
-
-  if (loading) return null; // or a loader
-
-  if (!user) return <Navigate to="/login" replace />;
-
-  return children;
-}
-
 function App() {
   return (
     <Routes>
-
-      {/* Public Routes */}
       <Route
         path="/"
         element={
@@ -72,8 +58,6 @@ function App() {
           </MainLayout>
         }
       />
-
-      {/* PROTECTED DASHBOARD */}
       <Route
         path="/dashboard"
         element={
@@ -86,7 +70,6 @@ function App() {
         <Route path="garage" element={<Garage />} />
       </Route>
 
-      {/* Redirect unknown routes */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

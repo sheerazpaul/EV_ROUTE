@@ -10,26 +10,25 @@ function SignUp() {
   const [password, setPassword] = useState("")
   const [confirm, setConfirm] = useState("")
   const [error, setError] = useState("")
-  const { registerUser } = useAuth()
+  const { signup  } = useAuth()
   const navigate = useNavigate()
 
-  const handleSignUp = async () => {
-    if (password !== confirm) {
-      setError("Passwords do not match")
-      return
-    }
-
-    try {
-      const res = await registerUser(name, last, username, email, password)
-      if (!res.success) {
-        setError(res.message)
-        return
-      }
-      navigate("/login")
-    } catch (err) {
-      setError(err.message)
-    }
+ const handleSignUp = async () => {
+  if (password !== confirm) {
+    setError("Passwords do not match");
+    return;
   }
+
+  const res = await signup  (name, last, username, email, password);
+
+  if (!res.success) {
+    setError(res.message);
+    return;
+  }
+
+  navigate("/login"); 
+};
+
 
   return (
     <div className='flex flex-col md:flex-row gap-10 md:gap-24 mb-3 ml-5 md:ml-10 items-center md:items-start justify-center'>

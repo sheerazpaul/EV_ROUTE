@@ -15,7 +15,7 @@ const DashboardPage = () => {
           <Button
             color="primary"
             variant="solid"
-            className="font-semibold dark:text-white text-gray-900"
+            className="font-semibold dark:text-white text-gray-900 "
             startContent={<FontAwesomeIcon icon={faRoute} />}
           >
             Plan a New Trip
