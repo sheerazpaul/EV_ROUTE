@@ -10,7 +10,7 @@ function Navbar({ scrollToSection, refs }) {
     <nav className="w-full  px-5 py-3 flex items-center justify-between shadow-md fixed
       bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 z-50
     ">
-      <Link >
+      <Link to="/" >
         <div className="text-xl font-bold">EV Route</div>
       </Link>
       <div className="hidden md:flex space-x-8 font-medium">
@@ -41,7 +41,7 @@ function Navbar({ scrollToSection, refs }) {
         >
           Sign Up
         </Link>
-        <Link 
+        <Link to="/login"
          
           className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center"
         >
@@ -80,7 +80,7 @@ function Navbar({ scrollToSection, refs }) {
           </Link>
           <div className="flex flex-col gap-3 w-3/4">
             <Link
-              to="/signUp"
+              to="/register"
               onClick={() => setMenuOpen(false)}
               className="h-10 w-full bg-blue-500 rounded-lg font-semibold hover:bg-blue-700 transition flex justify-center items-center"
             >

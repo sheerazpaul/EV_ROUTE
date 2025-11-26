@@ -18,9 +18,7 @@ function SignUp() {
     setError("Passwords do not match");
     return;
   }
-
   const res = await signup  (name, last, username, email, password);
-
   if (!res.success) {
     setError(res.message);
     return;
@@ -50,7 +48,7 @@ function SignUp() {
           />
         </div>
 
-        <div className='flex flex-col sm:flex-row gap-3'>
+        <div className='flex flex-col sm:flex-row gap-3 mt-4'>
           <Input
             placeholder="First Name"
             size="md"

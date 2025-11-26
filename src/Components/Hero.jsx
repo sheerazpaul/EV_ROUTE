@@ -6,7 +6,7 @@ import { ThemeContext } from "./ThemeContext";
 function Hero() {
    const { dark } = useContext(ThemeContext);
   return (
-    <div className="group bg-[url('/images/car-4.jpg')] dark:bg-[url('/images/car-6.jpg')] h-[400px] sm:h-[450px] md:h-[500px] w-full bg-cover bg-center rounded-2xl mx-auto my-5 px-4 flex justify-center items-center overflow-hidden">
+    <div className="group bg-[url('/images/car-4.jpg')] dark:bg-[url('/images/car-2.jpg')] h-[400px] sm:h-[450px] md:h-[500px] w-full bg-cover bg-center rounded-2xl mx-auto my-5 px-4 flex justify-center items-center overflow-hidden">
       <div className="inset-0 bg-black/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       <div className="relative flex flex-col items-center gap-4 text-center px-4 sm:px-6 md:px-10 opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:translate-y-0 translate-y-5">
         <div className="max-w-[700px]">

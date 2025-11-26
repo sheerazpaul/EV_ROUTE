@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
       return { success: false, message: err.message || "Login failed" };
     }
   };
-  const registerUser = async (firstName, lastName, username, email, password) => {
+  const signup = async (firstName, lastName, username, email, password) => {
     try {
       setLoading(true);
 
@@ -154,7 +154,7 @@ export const AuthProvider = ({ children }) => {
         refresh,
         loading,
         login,
-        registerUser,
+        signup,
         logout,
         authFetch,
         refreshAccessToken,

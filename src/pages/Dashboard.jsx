@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login"); 
+    navigate("*"); 
   };
   const menuItems = [
     { name: "Dashboard", icon: faBorderAll, to: "home" },
@@ -72,7 +72,7 @@ const Dashboard = () => {
             <Button
               color="primary"
               variant="light"
-              className="font-semibold dark:text-white text-gray-900 hover:text-blue-800 mt-2"
+              className="font-semibold dark:text-white text-gray-900 hover:text-blue-800 mt-2 ml-6 mb-2"
               startContent={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
                onPress={handleLogout}
             >

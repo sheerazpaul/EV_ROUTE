@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 function Login() {
-  const [user, setUser] = useState("");   // username or email
+  const [user, setUser] = useState("");  
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useAuth();
@@ -20,9 +20,8 @@ const handleLogin = async () => {
   } else {
     setError(res.message);
   }
+  
 };
-
-
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[300px] px-4 lg:px-10">
       <div className="group dark:bg-[url('/images/car-1.jpg')] bg-[url('/images/car-7.jpg')]  h-[300px] sm:h-[400px] md:h-[400px] lg:h-[600px] w-full sm:w-[400px] bg-cover bg-center rounded-xl overflow-hidden flex justify-center items-center mt-20 flex-col text-center px-3">

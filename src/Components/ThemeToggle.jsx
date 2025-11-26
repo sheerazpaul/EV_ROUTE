@@ -13,7 +13,7 @@ function ThemeToggle() {
         bg-gray-200 dark:bg-gray-800 
         text-gray-900 dark:text-gray-100
         transition-all duration-300
-        hover:scale-110
+        hover:scale-103
       "
     >
       {dark ? <FaSun size={20} /> : <FaMoon size={20} />}
