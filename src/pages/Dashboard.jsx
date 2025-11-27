@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("*"); 
+    navigate("/login"); 
   };
   const menuItems = [
     { name: "Dashboard", icon: faBorderAll, to: "home" },

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChargingStation } from "@fortawesome/free-solid-svg-icons";
 import { Input, Button } from "@heroui/react";
@@ -16,12 +16,12 @@ const handleLogin = async () => {
   const res = await login(user, password);
 
   if (res.success) {
-    navigate("/dashboard/home"); 
+    navigate("/dashboard/home");
   } else {
     setError(res.message);
   }
-  
 };
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[300px] px-4 lg:px-10">
       <div className="group dark:bg-[url('/images/car-1.jpg')] bg-[url('/images/car-7.jpg')]  h-[300px] sm:h-[400px] md:h-[400px] lg:h-[600px] w-full sm:w-[400px] bg-cover bg-center rounded-xl overflow-hidden flex justify-center items-center mt-20 flex-col text-center px-3">

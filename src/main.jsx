@@ -11,11 +11,11 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HeroUIProvider>
       <ThemeProvider>
-        <AuthProvider>
-          <BrowserRouter>
+        <BrowserRouter>
+          <AuthProvider>
             <App />
-          </BrowserRouter>
-        </AuthProvider>
+          </AuthProvider>
+        </BrowserRouter>
       </ThemeProvider>
     </HeroUIProvider>
   </StrictMode>

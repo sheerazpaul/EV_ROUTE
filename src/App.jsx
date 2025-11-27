@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import Resetpassword from "./Components/ResetPassword.jsx";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import Login from "./Components/Login";
@@ -53,11 +54,13 @@ function App() {
       <Route
         path="/forgot"
         element={
-          <MainLayout>
+          
             <ForgotPassword />
-          </MainLayout>
+       
         }
       />
+       <Route path="/reset" element={<Resetpassword />} />
+
       <Route
         path="/dashboard"
         element={
@@ -69,8 +72,7 @@ function App() {
         <Route path="home" element={<DashboardPage />} />
         <Route path="garage" element={<Garage />} />
       </Route>
-
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/login"  />} />
     </Routes>
   );
 }
