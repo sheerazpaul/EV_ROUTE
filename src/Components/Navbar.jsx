@@ -120,12 +120,14 @@ function Navbar({ scrollToSection, refs }) {
               </>
             )}
             {navbarButtonVisibility() && (
+              <div className="flex justify-center items-center">
               <button
                 onClick={() => navigate("/dashboard/home")}
-                className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center ml-34"
+                className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800  "
               >
                 Dashboard
               </button>
+              </div>
             )}
             <div className="flex justify-center pt-2">
               <ThemeToggle />
