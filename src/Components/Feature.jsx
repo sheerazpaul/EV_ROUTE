@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "./box";
+import Box from "./Box";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap} from '@fortawesome/free-regular-svg-icons';
 import { faRoute, faClockRotateLeft, faComment  } from '@fortawesome/free-solid-svg-icons';
