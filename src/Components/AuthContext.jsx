@@ -1,6 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { TOKEN_URL, SIGN_UP_URL, REFRESH_URL, RESET_PASSWORD } from "../api.config.js";
+import {
+  TOKEN_URL,
+  SIGN_UP_URL,
+  REFRESH_URL,
+  RESET_PASSWORD,
+} from "../api.config.js";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -9,35 +14,40 @@ export const AuthProvider = ({ children }) => {
   const [refresh, setRefresh] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-const forgotPassword = async (email, frontend_url) => {
-  try {
-    setLoading(true);
+  const forgotPassword = async (email, frontend_url) => {
+    try {
+      setLoading(true);
 
-    const res = await fetch(`${RESET_PASSWORD}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email , frontend_url}),
-    });
+      const res = await fetch(`${RESET_PASSWORD}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, frontend_url }),
+      });
 
-    const data = await res.json().catch(() => null);
+      const data = await res.json().catch(() => null);
 
-    if (!res.ok) {
-      const message =
-        (data && (data.detail || data.message || JSON.stringify(data))) ||
-        "Password reset failed";
+      if (!res.ok) {
+        const message =
+          (data && (data.detail || data.message || JSON.stringify(data))) ||
+          "Password reset failed";
+        setLoading(false);
+        return { success: false, message };
+      }
+
       setLoading(false);
-      return { success: false, message };
+      return {
+        success: true,
+        message: "Password reset email sent successfully",
+      };
+    } catch (err) {
+      setLoading(false);
+      return {
+        success: false,
+        message: err.message || "Forgot password failed",
+      };
     }
+  };
 
-    setLoading(false);
-    return { success: true, message: "Password reset email sent successfully" };
-  } catch (err) {
-    setLoading(false);
-    return { success: false, message: err.message || "Forgot password failed" };
-  }
-};
-
-  
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     const savedAccess = localStorage.getItem("access");
@@ -137,14 +147,11 @@ const forgotPassword = async (email, frontend_url) => {
       const savedRefresh = localStorage.getItem("refresh");
       if (!savedRefresh) return null;
 
-      const res = await fetch(
-        `${REFRESH_URL}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ refresh: savedRefresh }),
-        }
-      );
+      const res = await fetch(`${REFRESH_URL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refresh: savedRefresh }),
+      });
 
       if (!res.ok) {
         logout();
@@ -166,13 +173,12 @@ const forgotPassword = async (email, frontend_url) => {
     }
   };
 
-const logout = () => {
-  localStorage.removeItem("user");
-  localStorage.removeItem("access");
-  localStorage.removeItem("refresh");
-  navigate("/login");
-};
-
+  const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    navigate("/login");
+  };
 
   const authFetch = async (url, options = {}) => {
     let token = access || localStorage.getItem("access");
@@ -192,10 +198,37 @@ const logout = () => {
 
     return res;
   };
+  const authRedirectGuard = (navigate) => {
+    const hasUser = localStorage.getItem("user");
+    const hasToken = localStorage.getItem("access");
+
+    if (hasUser && hasToken) {
+      navigate("/dashboard/home", { replace: true });
+    } else {
+      navigate("/login", { replace: true });
+    }
+  };
+  const navbarButtonVisibility = () => {
+    const hasUser = localStorage.getItem("user");
+    const hasToken = localStorage.getItem("access");
+    return hasUser && hasToken;
+  };
 
   return (
     <AuthContext.Provider
-      value={{ user, access, refresh, loading, login, signup, logout, authFetch,forgotPassword }}
+      value={{
+        user,
+        access,
+        refresh,
+        loading,
+        login,
+        signup,
+        logout,
+        authFetch,
+        forgotPassword,
+        authRedirectGuard,
+        navbarButtonVisibility,
+      }}
     >
       {children}
     </AuthContext.Provider>

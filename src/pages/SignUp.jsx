@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Button } from '@heroui/react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from './AuthContext'
+import { useAuth } from '../Components/AuthContext.jsx'
 function SignUp() {
   const [name, setName] = useState("")
   const [last, setLast] = useState("")

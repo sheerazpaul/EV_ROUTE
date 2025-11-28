@@ -3,8 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Resetpassword from "./Components/ResetPassword.jsx";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
-import Login from "./Components/Login";
-import SignUp from "./Components/SignUp";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
 import ForgotPassword from "./Components/ForgotPassword";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -36,18 +36,18 @@ function App() {
       <Route
         path="/login"
         element={
-          <MainLayout>
+         
             <Login />
-          </MainLayout>
+        
         }
       />
 
       <Route
         path="/register"
         element={
-          <MainLayout>
+        
             <SignUp />
-          </MainLayout>
+          
         }
       />
 
@@ -59,7 +59,11 @@ function App() {
        
         }
       />
-       <Route path="/reset" element={<Resetpassword />} />
+       <Route path="/reset" element={
+        <MainLayout>
+        <Resetpassword />
+        </MainLayout>
+        } />
 
       <Route
         path="/dashboard"

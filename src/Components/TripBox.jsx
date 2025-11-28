@@ -29,20 +29,20 @@ function TripBox() {
           {trips.map((trip, index) => (
             <div
               key={index}
-              className="flex items-center justify-between bg-[#2A3A55] p-4 rounded-lg"
+              className="flex items-center justify-between dark:bg-[#2A3A55] bg-gray-300  p-4 rounded-lg"
             >
               <div className="flex items-center gap-3">
                 <div className="flex flex-col">
-                  <span className="text-white font-semibold">{trip.title}</span>
-                  <span className="text-default-500 text-sm">
+                  <span className="dark:text-white font-semibold text-gray-900 ">{trip.title}</span>
+                  <span className=" text-sm dark:text-default-500 text-gray-900 ">
                     {trip.date} - {trip.distance}
                   </span>
                 </div>
               </div>
               <Button
-                variant="outline"
+                variant="flat"
                 size="sm"
-                className="text-white border-white"
+                className="dark:text-white text-gray-900 border-white"
                 starcontent={trip.icon}
               >
                 Repeat Trip

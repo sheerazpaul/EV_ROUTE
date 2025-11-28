@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChargingStation } from "@fortawesome/free-solid-svg-icons";
 import { Input, Button } from "@heroui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../Components/AuthContext";
 
 function Login() {
   const [user, setUser] = useState("");  

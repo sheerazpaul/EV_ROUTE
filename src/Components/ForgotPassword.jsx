@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input, Button } from "@heroui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 function ForgotPassword() {
@@ -11,7 +11,7 @@ function ForgotPassword() {
     try {
       await forgotPassword(
         email,
-        "http://localhost:5173/reset"
+        "http://localhost:5173"
       );
       alert("Password reset email sent! Check your inbox.");
     } catch (err) {
@@ -23,7 +23,7 @@ function ForgotPassword() {
   return (
     <div className="min-h-screen w-full flex justify-center items-center px-4 sm:px-6 md:px-8 dark:bg-[#101922] bg-white  ">
       <div className="flex flex-col gap-3 justify-center w-full max-w-md">
-        <div className="w-full rounded-md dark:bg-black bg-white flex flex-col p-5 sm:p-6 md:p-7 shadow-lg border-1 border-gray-300">
+        <div className="w-full rounded-md dark:bg-black bg-white flex flex-col p-5 sm:p-6 md:p-7 shadow-lg border-1 border-gray-800">
           <h1 className="dark:text-white text-black font-bold text-center text-xl sm:text-2xl md:text-3xl mb-2">
            Enter your Email
           </h1>

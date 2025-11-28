@@ -20,7 +20,6 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login"); 
   };
   const menuItems = [
     { name: "Dashboard", icon: faBorderAll, to: "home" },
@@ -45,7 +44,7 @@ const Dashboard = () => {
                 to={item.to}
                 className={({ isActive }) =>
                   `font-semibold dark:text-white text-white${
-                    isActive ? "bg-blue-100 dark:bg-blue-900 rounded-md" : ""
+                    isActive ? " dark:bg-blue-900 rounded-md bg-gray-900" : ""
                   }`
                 }
               >
