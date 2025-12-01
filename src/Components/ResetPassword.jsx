@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Input, Button } from "@heroui/react";
 import { useNavigate,  Link } from "react-router-dom";
 import { RESET_PASSWORD_CONFIRM } from "../api.config.js";
-
+import { useEffect } from "react";
+import { useAuth } from "../Components/AuthContext";
 function Resetpassword() {
   const searchParams = new URLSearchParams(window.location.search);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+ const { authRedirectGuard } = useAuth();
   const navigate = useNavigate();
-
+   useEffect(() => {
+     authRedirectGuard(navigate);
+  }, []);
   const handleReset = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {

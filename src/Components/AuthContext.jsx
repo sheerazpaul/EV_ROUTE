@@ -204,8 +204,10 @@ export const AuthProvider = ({ children }) => {
 
     if (hasUser && hasToken) {
       navigate("/dashboard/home", { replace: true });
+      navigate("/reset", { replace: true });
     } else {
       navigate("/login", { replace: true });
+      return null;
     }
   };
   const navbarButtonVisibility = () => {

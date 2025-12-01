@@ -62,7 +62,7 @@ function Navbar({ scrollToSection, refs }) {
           {navbarButtonVisibility() && (
         <button
           onClick={() => navigate("/dashboard/home")}
-          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center"
+          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center cursor-pointer"
         >
           Dashboard
         </button>

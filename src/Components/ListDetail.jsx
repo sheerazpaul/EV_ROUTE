@@ -1,21 +1,29 @@
 import React from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@heroui/react";
 
-export default function ListDetail({ head, model }) {
-  const [selectedKeys, setSelectedKeys] = React.useState(model);
+export default function ListDetail({ head, model, options = [], onChange }) {
+  const [selectedKeys, setSelectedKeys] = React.useState(new Set([model]));
 
   const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join("").replace(/_/g, ""),
+    () => Array.from(selectedKeys).join("").replace(/_/g, " "),
     [selectedKeys]
   );
+
+  React.useEffect(() => {
+    setSelectedKeys(new Set([model]));
+  }, [model]);
 
   return (
     <div className="flex flex-col gap-2 w-full max-w-[350px]">
       <h1 className="dark:text-white text-gray-900 font-semibold">{head}</h1>
       <Dropdown>
         <DropdownTrigger>
-          <Button className="capitalize w-full dark:text-white text-gray-900" variant="bordered" color="primary">
-            {selectedValue}
+          <Button
+            className="capitalize w-full dark:text-white text-gray-900"
+            variant="bordered"
+            color="primary"
+          >
+            {selectedValue || `Select ${head}`}
           </Button>
         </DropdownTrigger>
         <DropdownMenu
@@ -24,13 +32,24 @@ export default function ListDetail({ head, model }) {
           selectedKeys={selectedKeys}
           selectionMode="single"
           variant="flat"
-          onSelectionChange={setSelectedKeys}
+        onAction={(key) => {
+  const newSet = new Set([key]);
+  setSelectedKeys(newSet);
+  onChange(key);
+}}
+
         >
-          <DropdownItem key={model}>{model}</DropdownItem>
-          <DropdownItem key="number">Number</DropdownItem>
-          <DropdownItem key="date">Date</DropdownItem>
-          <DropdownItem key="single_date">Single Date</DropdownItem>
-          <DropdownItem key="iteration">Iteration</DropdownItem>
+          {options.length > 0
+            ? options.map((opt) => (
+                <DropdownItem key={opt} textValue={opt}>
+                  {opt}
+                </DropdownItem>
+              ))
+            : (
+                <DropdownItem key={model} textValue={model}>
+                  {model}
+                </DropdownItem>
+              )}
         </DropdownMenu>
       </Dropdown>
     </div>

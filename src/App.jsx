@@ -60,9 +60,7 @@ function App() {
         }
       />
        <Route path="/reset" element={
-        <MainLayout>
         <Resetpassword />
-        </MainLayout>
         } />
 
       <Route
@@ -76,7 +74,7 @@ function App() {
         <Route path="home" element={<DashboardPage />} />
         <Route path="garage" element={<Garage />} />
       </Route>
-      <Route path="*" element={<Navigate to="/login"  />} />
+     
     </Routes>
   );
 }

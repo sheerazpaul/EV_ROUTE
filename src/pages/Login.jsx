@@ -23,12 +23,12 @@ const handleLogin = async () => {
 };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[300px] px-4 lg:px-10">
-      <div className="group dark:bg-[url('/images/car-1.jpg')] bg-[url('/images/car-7.jpg')]  h-[300px] sm:h-[400px] md:h-[400px] lg:h-[600px] w-full sm:w-[400px] bg-cover bg-center rounded-xl overflow-hidden flex justify-center items-center mt-20 flex-col text-center px-3">
-        <h1 className="dark:text-white text-gray-700 text-2xl sm:text-3xl font-semibold mt-[200px] sm:mt-[300px] md:mt-[400px] lg:mt-[500px]">
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[300px] px-4 lg:px-10 p-5">
+      <div className="group dark:bg-[url('/images/car-1.jpg')] bg-[url('/images/car-7.jpg')]  h-[300px] sm:h-[400px] md:h-[480px] lg:h-[600px] w-full sm:w-[400px] bg-cover bg-center rounded-xl overflow-hidden flex justify-center items-center mt-10 flex-col text-center px-3">
+        <h1 className="dark:text-white text-gray-700 text-2xl sm:text-3xl font-semibold mt-[200px] sm:mt-[300px] md:mt-[400px] lg:mt-[400px]">
           Find Your Next Charge, Effortlessly,
         </h1>
-        <p className="text-gray-300 mt-3 text-sm sm:text-base">
+        <p className="text-gray-300  text-sm sm:text-base">
           Join a community of EV drivers finding the best charging station.
         </p>
       </div>

@@ -29,8 +29,8 @@ function SignUp() {
 
 
   return (
-    <div className='flex flex-col md:flex-row gap-10 md:gap-24 mb-3 ml-5 md:ml-10 items-center md:items-start justify-center'>
-      <div className="dark:bg-[url('/images/car-5.jpg')] bg-[url('/images/car-8.jpg')]  h-[250px] w-[300px] sm:h-[400px] sm:w-[350px] md:h-[500px] md:w-[400px] bg-cover  mt-10 md:mt-20 ml-0 md:ml-6 rounded-lg" />
+    <div className='flex flex-col md:flex-row gap-10 md:gap-24 mb-3 ml-2 md:ml-10 items-center md:items-start justify-center p-4'>
+      <div className="dark:bg-[url('/images/car-5.jpg')] bg-[url('/images/car-9.jpg')]  h-[250px] w-[300px] sm:h-[400px] sm:w-[350px] md:h-[500px] md:w-[400px] bg-cover  mt-10 md:mt-20 ml-0 md:ml-6 rounded-lg" />
       <div className='flex flex-col gap-1 w-full md:w-auto px-4 sm:px-6 md:px-0'>
         <h1 className='dark:text-white font-bold text-3xl mt-10 md:mt-24 font-sans text-gray-900'>Create Your Account</h1>
         <p className='dark:text-gray-400 mb-3 text-gray-900'>Find charging stations and plan your next journey with ease</p>
