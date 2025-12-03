@@ -11,6 +11,7 @@ import Footer from "./Components/Footer";
 import Garage from "./pages/Garage";
 import DashboardPage from "./Components/DashboardPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import PublicRoute from "./PublicRoute.jsx";  
 function MainLayout({ children }) {
   return (
     <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
@@ -36,8 +37,9 @@ function App() {
       <Route
         path="/login"
         element={
-         
+         <PublicRoute>
             <Login />
+            </PublicRoute>
         
         }
       />
@@ -45,8 +47,9 @@ function App() {
       <Route
         path="/register"
         element={
-        
+        <PublicRoute>
             <SignUp />
+            </PublicRoute>
           
         }
       />

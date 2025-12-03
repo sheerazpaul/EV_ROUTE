@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Button, Progress } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRoute, faChargingStation, faArrowRightArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import TripBox from "./TripBox";
-import { Link } from "react-router-dom";
+import TripBox from "./TripBox"; 
+import { useNavigate } from "react-router-dom";  
 const DashboardPage = () => {
-  const [vehicle, setVehicle] = useState(null); 
+  const [vehicle, setVehicle] = useState(null);
+  const navigate = useNavigate(); 
   useEffect(() => {
     const savedVehicle = JSON.parse(localStorage.getItem("selectedVehicle"));
     if (savedVehicle) {
       setVehicle(savedVehicle);
     }
-  }, []);
-
+  }, [])
   return (
     <div className="p-6">
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6">

@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
   const [refresh, setRefresh] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  
   const forgotPassword = async (email, frontend_url) => {
     try {
       setLoading(true);
@@ -204,10 +205,9 @@ export const AuthProvider = ({ children }) => {
 
     if (hasUser && hasToken) {
       navigate("/dashboard/home", { replace: true });
-      navigate("/reset", { replace: true });
     } else {
       navigate("/login", { replace: true });
-      return null;
+      
     }
   };
   const navbarButtonVisibility = () => {

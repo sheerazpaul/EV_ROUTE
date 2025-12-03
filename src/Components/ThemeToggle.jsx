@@ -1,22 +1,15 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa"; 
-
+import { ThemeContext } from "./ThemeContext.jsx";
+import { FaSun, FaMoon } from "react-icons/fa";
 function ThemeToggle() {
   const { dark, setDark } = useContext(ThemeContext);
 
   return (
     <button
-      onClick={() => setDark(!dark)}
-      className="
-        p-2 rounded-full 
-        bg-gray-200 dark:bg-gray-800 
-        text-gray-900 dark:text-gray-100
-        transition-all duration-300
-        hover:scale-103
-      "
+      onClick={() => setDark(!dark)} 
+      className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full"
     >
-      {dark ? <FaSun size={20} /> : <FaMoon size={20} />}
+          {dark ? <FaSun className="t-400 text-lg" /> : <FaMoon className="text-black text-lg dark:text-white" />}
     </button>
   );
 }

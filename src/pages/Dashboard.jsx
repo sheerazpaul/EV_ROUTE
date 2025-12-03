@@ -16,8 +16,6 @@ import ThemeToggle from "../Components/ThemeToggle";
 
 const Dashboard = () => {
   const { logout } = useAuth();
-  const navigate = useNavigate();
-
   const handleLogout = () => {
     logout();
   };

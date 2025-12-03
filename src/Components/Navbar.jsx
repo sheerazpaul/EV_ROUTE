@@ -6,12 +6,9 @@ import { useAuth } from "./AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 function Navbar({ scrollToSection, refs }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { authRedirectGuard } = useAuth();
   const { navbarButtonVisibility } = useAuth();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   authRedirectGuard(navigate);
-  // }, []);
+const {logout} = useAuth();
   return (
     <nav
       className="w-full  px-5 py-3 flex items-center justify-between shadow-md fixed
@@ -60,12 +57,20 @@ function Navbar({ scrollToSection, refs }) {
           </>
         )}
           {navbarButtonVisibility() && (
+          <>
         <button
           onClick={() => navigate("/dashboard/home")}
           className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center cursor-pointer"
         >
           Dashboard
         </button>
+        <button
+          onClick={logout}
+          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center cursor-pointer"
+        >
+        Log Out
+        </button>
+        </>
       )}
       </div>
     
@@ -120,12 +125,18 @@ function Navbar({ scrollToSection, refs }) {
               </>
             )}
             {navbarButtonVisibility() && (
-              <div className="flex justify-center items-center">
+              <div className="flex flex-col gap-3 justify-center items-center">
               <button
                 onClick={() => navigate("/dashboard/home")}
                 className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800  "
               >
                 Dashboard
+              </button>
+                <button
+                onClick={logout}
+                className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800  "
+              >
+                Log Out
               </button>
               </div>
             )}

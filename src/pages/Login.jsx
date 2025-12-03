@@ -4,16 +4,15 @@ import { faChargingStation } from "@fortawesome/free-solid-svg-icons";
 import { Input, Button } from "@heroui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
-
+import NaveBar from "../Components/Navbar-second.jsx";
 function Login() {
-  const [user, setUser] = useState("");  
+  const [username, setUserName] = useState("");  
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
-
 const handleLogin = async () => {
-  const res = await login(user, password);
+  const res = await login(username, password);
 
   if (res.success) {
     navigate("/dashboard/home");
@@ -21,8 +20,9 @@ const handleLogin = async () => {
     setError(res.message);
   }
 };
-
   return (
+    <>
+    <NaveBar title="Don't have an account?" link="/register" button="Sign Up" />
     <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[300px] px-4 lg:px-10 p-5">
       <div className="group dark:bg-[url('/images/car-1.jpg')] bg-[url('/images/car-7.jpg')]  h-[300px] sm:h-[400px] md:h-[480px] lg:h-[600px] w-full sm:w-[400px] bg-cover bg-center rounded-xl overflow-hidden flex justify-center items-center mt-10 flex-col text-center px-3">
         <h1 className="dark:text-white text-gray-700 text-2xl sm:text-3xl font-semibold mt-[200px] sm:mt-[300px] md:mt-[400px] lg:mt-[400px]">
@@ -69,8 +69,8 @@ const handleLogin = async () => {
               variant="faded"
               radius="sm"
               className="w-full"
-              value={user}
-              onValueChange={setUser}
+              value={username}
+              onValueChange={setUserName}
             />
           </div>
 
@@ -117,6 +117,7 @@ const handleLogin = async () => {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
