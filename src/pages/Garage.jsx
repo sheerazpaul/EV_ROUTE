@@ -63,16 +63,16 @@ function Garage() {
     }
   }, [selectedMake, selectedModel, vehicleData]);
   const handleSaveVehicle = () => {
-  if (currentVehicle) {
-    localStorage.setItem("selectedVehicle", JSON.stringify(currentVehicle));
-    alert(`${currentVehicle.brand} ${currentVehicle.model} saved successfully!`);
-    navigate("/dashboard/home");
-
-  } else {
-    alert("Please select a vehicle first.");
-  }
-};
-
+    if (currentVehicle) {
+      localStorage.setItem("selectedVehicle", JSON.stringify(currentVehicle));
+      alert(
+        `${currentVehicle.brand} ${currentVehicle.model} saved successfully!`
+      );
+      navigate("/dashboard/home");
+    } else {
+      alert("Please select a vehicle first.");
+    }
+  };
 
   return (
     <div className="ml-6 max-w-full md:ml-6 px-2">
@@ -99,7 +99,7 @@ function Garage() {
       </div>
 
       {currentVehicle && (
-        <div className="w-full md:w-[720px] h-auto md:h-[350px] shadow-md border border-gray-600 rounded-lg mt-6 flex flex-col justify-between p-4">
+        <div className="w-full md:w-[720px] h-auto md:h-[350px] shadow-md border border-gray-600 rounded-lg mt-6 flex flex-col justify-between p-4 sm:w-auto">
           <div className="flex justify-center items-center flex-col mt-5 gap-1">
             <img
               className="w-[130px] h-[130px] object-cover rounded-sm"
@@ -115,30 +115,34 @@ function Garage() {
           </div>
 
           {currentVehicle ? (
-            <div className="m-3 flex gap-4 justify-center md:justify-start">
+            <div className="m-3 flex  gap-2 justify-center md:justify-start">
               <Specifications
                 icon={<FontAwesomeIcon icon={faBatteryFull} />}
                 title="Battery"
                 properties={currentVehicle.battery_capacity_kWh || "N/A"}
                 valueUnit="kWh"
+                className="w-full sm:w-[48%] md:w-[170px]"
               />
               <Specifications
                 icon={<FontAwesomeIcon icon={faGaugeSimpleHigh} />}
                 title="Range"
                 properties={currentVehicle.range_km || "N/A"}
                 valueUnit="km"
+                className="w-full sm:w-[48%] md:w-[170px]"
               />
               <Specifications
                 icon={<FontAwesomeIcon icon={faPlug} />}
                 title="Port Type"
                 properties={currentVehicle.connector_type || "N/A"}
                 valueUnit=""
+                className="w-full sm:w-[48%] md:w-[170px]"
               />
               <Specifications
                 icon={<FontAwesomeIcon icon={faBolt} />}
                 title="Max Charge"
                 properties={currentVehicle.max_charging_power_kW || "N/A"}
                 valueUnit="kW"
+                className="w-full sm:w-[48%] md:w-[170px]"
               />
             </div>
           ) : (
@@ -150,11 +154,14 @@ function Garage() {
       )}
 
       <div className="flex mt-6 justify-center md:ml-[500px]">
-  <Button color="primary" className="font-semibold" onPress={handleSaveVehicle} >
-    Save Vehicle
-  </Button>
-</div>
-
+        <Button
+          color="primary"
+          className="font-semibold"
+          onPress={handleSaveVehicle}
+        >
+          Save Vehicle
+        </Button>
+      </div>
     </div>
   );
 }

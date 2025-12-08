@@ -7,7 +7,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)} 
-      className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full"
+      className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full cursor-pointer"
     >
           {dark ? <FaSun className="t-400 text-lg" /> : <FaMoon className="text-black text-lg dark:text-white" />}
     </button>

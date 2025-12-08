@@ -11,7 +11,8 @@ import Footer from "./Components/Footer";
 import Garage from "./pages/Garage";
 import DashboardPage from "./Components/DashboardPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import PublicRoute from "./PublicRoute.jsx";  
+import PublicRoute from "./PublicRoute.jsx";
+import SettingsPage from "./Settings/SettingPage.jsx";
 function MainLayout({ children }) {
   return (
     <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
@@ -37,34 +38,23 @@ function App() {
       <Route
         path="/login"
         element={
-         <PublicRoute>
+          <PublicRoute>
             <Login />
-            </PublicRoute>
-        
+          </PublicRoute>
         }
       />
 
       <Route
         path="/register"
         element={
-        <PublicRoute>
+          <PublicRoute>
             <SignUp />
-            </PublicRoute>
-          
+          </PublicRoute>
         }
       />
 
-      <Route
-        path="/forgot"
-        element={
-          
-            <ForgotPassword />
-       
-        }
-      />
-       <Route path="/reset" element={
-        <Resetpassword />
-        } />
+      <Route path="/forgot" element={<ForgotPassword />} />
+      <Route path="/reset" element={<Resetpassword />} />
 
       <Route
         path="/dashboard"
@@ -76,8 +66,8 @@ function App() {
       >
         <Route path="home" element={<DashboardPage />} />
         <Route path="garage" element={<Garage />} />
+        <Route path="settings" element={<SettingsPage />} />
       </Route>
-     
     </Routes>
   );
 }
