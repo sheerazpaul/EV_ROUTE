@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Resetpassword from "./Components/ResetPassword.jsx";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
@@ -10,9 +10,35 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Garage from "./pages/Garage";
 import DashboardPage from "./Components/DashboardPage";
-import ProtectedRoute from "./Components/ProtectedRoute";
+import ProtectedRoute from "./Components/ProtectedRoute"; 
 import PublicRoute from "./PublicRoute.jsx";
-import SettingsPage from "./Settings/SettingPage.jsx";
+import SettingsLayout from "./Settings/SettingLayout.jsx";
+import { useState } from "react";
+import { REFRESH_URL } from "./api.config.js";
+// const [token, setToken] = useState(localStorage.getItem("access"));
+// useEffect(() => {
+//   const checkAndRefreshToken = async () => {
+//     const refreshToken = localStorage.getItem("refresh");
+//     try {
+//       const res = await fetch(`${REFRESH_URL}`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ refresh: refreshToken }),
+//         Authorization: `Bearer ${token}`,
+//       });
+//       if (res.ok) {
+//         const data = await res.json();
+//         localStorage.setItem("access", data.access);
+//         setToken(data.access);
+//         console.log("Token refreshed successfully", data.access);
+//       } else {
+//         console.log("Token is invalid or expired");
+//       }
+//     } catch (error) {
+//       console.error("Error refreshing token:", error);
+//     }
+//   };
+// }, []);
 function MainLayout({ children }) {
   return (
     <div className="h-full w-full dark:bg-[#101922] overflow-x-hidden bg-white">
@@ -52,10 +78,9 @@ function App() {
           </PublicRoute>
         }
       />
-
+      <Route path="/dashboard/settings" element={<SettingsLayout />} />
       <Route path="/forgot" element={<ForgotPassword />} />
       <Route path="/reset" element={<Resetpassword />} />
-
       <Route
         path="/dashboard"
         element={
@@ -66,7 +91,6 @@ function App() {
       >
         <Route path="home" element={<DashboardPage />} />
         <Route path="garage" element={<Garage />} />
-        <Route path="settings" element={<SettingsPage />} />
       </Route>
     </Routes>
   );

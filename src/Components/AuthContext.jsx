@@ -5,6 +5,7 @@ import {
   SIGN_UP_URL,
   REFRESH_URL,
   RESET_PASSWORD,
+  USER_PROFILE_URL,
 } from "../api.config.js";
 const AuthContext = createContext();
 
@@ -14,7 +15,24 @@ export const AuthProvider = ({ children }) => {
   const [refresh, setRefresh] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  
+  useEffect(() => {
+    if (access) fetchProfile();
+  }, [access]);
+
+  const fetchProfile = async () => {
+  try {
+    const res = await authFetch(`${USER_PROFILE_URL}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${access}` },
+    });
+    const data = await res.json();
+    console.log("Fetched profile:", data);
+    setUser(data); 
+  } catch (err) {
+    console.error("Profile fetch error:", err);
+  }
+};
+
   const forgotPassword = async (email, frontend_url) => {
     try {
       setLoading(true);
@@ -126,7 +144,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       const data = await res.json().catch(() => null);
-
+      setUser(data);
       if (!res.ok) {
         const message =
           (data && (data.detail || data.message || JSON.stringify(data))) ||
@@ -219,6 +237,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+      
         user,
         access,
         refresh,
@@ -230,6 +249,7 @@ export const AuthProvider = ({ children }) => {
         forgotPassword,
         authRedirectGuard,
         navbarButtonVisibility,
+        fetchProfile,
       }}
     >
       {children}

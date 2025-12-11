@@ -3,10 +3,10 @@ import { Button, Progress } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRoute, faChargingStation, faArrowRightArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import TripBox from "./TripBox"; 
-import { useNavigate } from "react-router-dom";  
+import { useAuth } from "../Components/AuthContext";
 const DashboardPage = () => {
+  const {user} = useAuth();
   const [vehicle, setVehicle] = useState(null);
-  const navigate = useNavigate(); 
   useEffect(() => {
     const savedVehicle = JSON.parse(localStorage.getItem("selectedVehicle"));
     if (savedVehicle) {
@@ -17,7 +17,7 @@ const DashboardPage = () => {
     <div className="p-6">
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6">
         <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-4 lg:mb-0">
-          Welcome Back!
+          Welcome Back, {user?.user?.first_name}!
         </h2>
         <div className="flex flex-col sm:flex-row gap-2">
           <Button

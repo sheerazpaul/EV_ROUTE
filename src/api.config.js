@@ -6,3 +6,4 @@
  export const RESET_PASSWORD_CONFIRM = `${API_BASE_URL}/reset-confirm`;
  export const VEHICAL_DATA_URL = `${API_BASE_URL}/vehicles`;
  export const USER_PROFILE_URL = `${API_BASE_URL}/profile`;
+ export const UPLOAD_IMAGE_URL = `${API_BASE_URL}/profile/upload-image`;
