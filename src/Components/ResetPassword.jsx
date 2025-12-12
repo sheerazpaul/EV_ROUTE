@@ -12,9 +12,7 @@ function Resetpassword() {
   const [success, setSuccess] = useState("");
  const { authRedirectGuard } = useAuth();
   const navigate = useNavigate();
-   useEffect(() => {
-     authRedirectGuard(navigate);
-  }, []);
+ 
   const handleReset = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {

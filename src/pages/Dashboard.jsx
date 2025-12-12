@@ -12,52 +12,24 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../Components/AuthContext";
 import ThemeToggle from "../Components/ThemeToggle";
-import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../api.config";
 const Dashboard = () => {
-  const { user, access, fetchProfile, logout } = useAuth();
-  const fileInputRef = useRef(null);
-  const [uploading, setUploading] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(null);
+  const { user, logout } = useAuth();
+  const [avatarPreview, setAvatarPreview] = useState("");
   console.log("User profile in Dashboard:", user);
   useEffect(() => {
     if (user?.profile_image) {
-      setAvatarPreview(`${user.profile_image}?t=${new Date().getTime()}`);
+      console.log("profile_image:", BASE_URL,user?.profile_image);
+      setAvatarPreview(`${BASE_URL}${user.profile_image}`);
+    } else {
+      setAvatarPreview("https://i.pravatar.cc/150?u=default");
     }
   }, [user]);
-
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    setUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("profile_image", file);
-
-      const res = await fetch(`${USER_PROFILE_URL}/upload-image`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Token ${access}`,
-        },
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Upload failed");
-      setAvatarPreview(URL.createObjectURL(file));
-      await fetchProfile();
-    } catch (err) {
-      console.error(err);
-      alert("Failed to upload image");
-    } finally {
-      setUploading(false);
-    }
-  };
+  console.log("Avatar preview URL:", avatarPreview);
 
   const handleLogout = () => {
     logout();
   };
- 
-
   const menuItems = [
     { name: "Dashboard", icon: faBorderAll, to: "home" },
     { name: "Live Map", icon: faMap, to: "map" },
@@ -103,19 +75,10 @@ const Dashboard = () => {
             <hr className="text-gray-800" />
             {user && user.user ? (
               <div className="flex flex-col items-center gap-2 mt-2">
-                <input
-                  type="file"
-                  accept="image/*"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
+                <input type="file" accept="image/*" className="hidden" />
                 <User
                   className="mt-2 cursor-pointer"
-                  avatarProps={{
-                    src: avatarPreview || "https://i.pravatar.cc/150?u=a04258114e29026702d",
-                    onClick: () => fileInputRef.current.click(),
-                  }}
+                  avatarProps={{ src: avatarPreview, alt: "User Avatar" }}
                   name={`${user.user.first_name} ${user.user.last_name}`}
                   description={user.user.email}
                 />

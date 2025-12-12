@@ -9,7 +9,7 @@ import {
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@heroui/react";
-import { VEHICAL_DATA_URL } from "../api.config";
+import { USER_PROFILE_URL, VEHICAL_DATA_URL } from "../api.config";
 import { useNavigate } from "react-router-dom";
 
 function Garage() {
@@ -18,6 +18,8 @@ function Garage() {
   const [selectedModel, setSelectedModel] = useState("");
   const [currentVehicle, setCurrentVehicle] = useState(null);
   const navigate = useNavigate();
+
+
   useEffect(() => {
     const fetchVehicleData = async () => {
       try {
@@ -30,18 +32,13 @@ function Garage() {
     };
     fetchVehicleData();
   }, []);
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("selectedVehicle"));
-    if (saved) {
-      setSelectedMake(saved.brand);
-      setSelectedModel(saved.model);
-      setCurrentVehicle(saved);
-    }
-  }, []);
+
+
   const brands = [...new Set(vehicleData.map((v) => v.brand))];
   const models = vehicleData
     .filter((v) => v.brand === selectedMake)
     .map((v) => v.model);
+
   useEffect(() => {
     if (selectedMake && models.length > 0) {
       setSelectedModel(models[0]);
@@ -50,37 +47,69 @@ function Garage() {
       setCurrentVehicle(null);
     }
   }, [selectedMake, vehicleData]);
+
   useEffect(() => {
     if (selectedMake && selectedModel) {
       const car = vehicleData.find(
         (v) => v.brand === selectedMake && v.model === selectedModel
       );
       setCurrentVehicle(car || null);
-
-      if (car) {
-        localStorage.setItem("selectedVehicle", JSON.stringify(car));
-      }
     }
   }, [selectedMake, selectedModel, vehicleData]);
-  const handleSaveVehicle = () => {
-    if (currentVehicle) {
-      localStorage.setItem("selectedVehicle", JSON.stringify(currentVehicle));
-      alert(
-        `${currentVehicle.brand} ${currentVehicle.model} saved successfully!`
-      );
-      navigate("/dashboard/home");
-    } else {
+
+ 
+  const handleSaveVehicle = async () => {
+    if (!currentVehicle) {
       alert("Please select a vehicle first.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("access");
+
+     
+      const profileRes = await fetch(USER_PROFILE_URL, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!profileRes.ok) throw new Error("Failed to fetch profile");
+      const profileData = await profileRes.json();
+
+      const updatedVehicleIds = profileData.vehicles
+        ? profileData.vehicles.map((v) => v.id)
+        : [];
+
+      if (!updatedVehicleIds.includes(currentVehicle.id)) {
+        updatedVehicleIds.push(currentVehicle.id);
+      }
+
+  
+      const res = await fetch(USER_PROFILE_URL, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ vehicle_ids: updatedVehicleIds }),
+      });
+      if (!res.ok) throw new Error("Failed to save vehicle");
+
+      alert(
+        `${currentVehicle.brand} ${currentVehicle.model} selected successfully!`
+      );
+      navigate("/dashboard/garage");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save vehicle. Please try again.");
     }
   };
 
   return (
-    <div className="ml-6 max-w-full md:ml-6 px-2">
+    <div className="ml-6 max-w-full md:ml-6 px-4">
       <h1 className="dark:text-white text-gray-900 font-bold text-4xl">
-        Add Your Vehicle
+        Select Your Vehicle
       </h1>
       <p className="text-gray-500 mt-2">
-        Select your vehicle's make and model to automatically add its details.
+        Select your vehicle's make and model to add it to My Garage.
       </p>
 
       <div className="flex flex-col md:flex-row mt-3 gap-5">
@@ -114,52 +143,46 @@ function Garage() {
             </p>
           </div>
 
-          {currentVehicle ? (
-            <div className="m-3 flex  gap-2 justify-center md:justify-start">
-              <Specifications
-                icon={<FontAwesomeIcon icon={faBatteryFull} />}
-                title="Battery"
-                properties={currentVehicle.battery_capacity_kWh || "N/A"}
-                valueUnit="kWh"
-                className="w-full sm:w-[48%] md:w-[170px]"
-              />
-              <Specifications
-                icon={<FontAwesomeIcon icon={faGaugeSimpleHigh} />}
-                title="Range"
-                properties={currentVehicle.range_km || "N/A"}
-                valueUnit="km"
-                className="w-full sm:w-[48%] md:w-[170px]"
-              />
-              <Specifications
-                icon={<FontAwesomeIcon icon={faPlug} />}
-                title="Port Type"
-                properties={currentVehicle.connector_type || "N/A"}
-                valueUnit=""
-                className="w-full sm:w-[48%] md:w-[170px]"
-              />
-              <Specifications
-                icon={<FontAwesomeIcon icon={faBolt} />}
-                title="Max Charge"
-                properties={currentVehicle.max_charging_power_kW || "N/A"}
-                valueUnit="kW"
-                className="w-full sm:w-[48%] md:w-[170px]"
-              />
-            </div>
-          ) : (
-            <p className="text-gray-500 mt-4">
-              Select a vehicle to see specifications
-            </p>
-          )}
+          <div className="m-3 flex gap-2 justify-center md:justify-start">
+            <Specifications
+              icon={<FontAwesomeIcon icon={faBatteryFull} />}
+              title="Battery"
+              properties={currentVehicle.battery_capacity_kWh || "N/A"}
+              valueUnit="kWh"
+              className="w-full sm:w-[48%] md:w-[170px]"
+            />
+            <Specifications
+              icon={<FontAwesomeIcon icon={faGaugeSimpleHigh} />}
+              title="Range"
+              properties={currentVehicle.range_km || "N/A"}
+              valueUnit="km"
+              className="w-full sm:w-[48%] md:w-[170px]"
+            />
+            <Specifications
+              icon={<FontAwesomeIcon icon={faPlug} />}
+              title="Port Type"
+              properties={currentVehicle.connector_type || "N/A"}
+              valueUnit=""
+              className="w-full sm:w-[48%] md:w-[170px]"
+            />
+            <Specifications
+              icon={<FontAwesomeIcon icon={faBolt} />}
+              title="Max Charge"
+              properties={currentVehicle.max_charging_power_kW || "N/A"}
+              valueUnit="kW"
+              className="w-full sm:w-[48%] md:w-[170px]"
+            />
+          </div>
         </div>
       )}
 
-      <div className="flex mt-6 justify-center md:ml-[500px]">
+      <div className="flex mb-2 justify-center md:ml-[720px]">
         <Button
           color="primary"
           className="font-semibold"
           onPress={handleSaveVehicle}
         >
-          Save Vehicle
+          Add to My Garage
         </Button>
       </div>
     </div>

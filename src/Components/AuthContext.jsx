@@ -18,6 +18,13 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (access) fetchProfile();
   }, [access]);
+useEffect(() => {
+  const interval = setInterval(() => {
+    refreshAccessToken();
+  }, 180000); 
+
+  return () => clearInterval(interval);
+}, []);
 
   const fetchProfile = async () => {
   try {
@@ -250,6 +257,7 @@ export const AuthProvider = ({ children }) => {
         authRedirectGuard,
         navbarButtonVisibility,
         fetchProfile,
+        setUser,
       }}
     >
       {children}

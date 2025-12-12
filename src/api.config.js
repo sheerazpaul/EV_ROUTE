@@ -1,4 +1,5 @@
- const API_BASE_URL = import.meta.env.VITE_BASE_API_URL;
+ export const BASE_URL = import.meta.env.VITE_BASE_URL;
+ export const API_BASE_URL = BASE_URL + '/api';
  export const RESET_PASSWORD = `${API_BASE_URL}/reset`;
  export const TOKEN_URL = `${API_BASE_URL}/login`;
  export const SIGN_UP_URL = `${API_BASE_URL}/register`;

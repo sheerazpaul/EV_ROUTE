@@ -11,7 +11,7 @@ function Navbar({ title, link, button }) {
   return (
     <nav className="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 z-50 border-b border-gray-200 dark:border-gray-700 shadow-md fixed w-full">
       <div className="flex justify-between items-center w-full sm:h-16 px-4 sm:px-6 py-3 sm:py-0">
-        <h2 className="text-xl sm:text-2xl font-bold">EV Station Finder</h2>
+        <Link to="/" className="text-xl sm:text-2xl font-bold">EV Station Finder</Link>
         <button
           className="sm:hidden p-2 rounded-md text-gray-900 dark:text-white"
           onClick={() => setMenuOpen(!menuOpen)}
