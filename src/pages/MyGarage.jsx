@@ -33,7 +33,6 @@ function MyGarage() {
     fetchSavedVehicles();
   }, []);
 
-  // Remove selected vehicle
   const handleRemoveVehicle = async () => {
     if (!currentVehicle) return;
 
@@ -43,7 +42,7 @@ function MyGarage() {
         (v) => v.id !== currentVehicle.id
       );
 
-      // Update backend
+   
       const res = await fetch(USER_PROFILE_URL, {
         method: "PATCH",
         headers: {
@@ -56,7 +55,6 @@ function MyGarage() {
 
       setSavedVehicles(updatedVehicles);
 
-      // Select a new current vehicle if any left
       setCurrentVehicle(updatedVehicles[0] || null);
     } catch (err) {
       console.error(err);
