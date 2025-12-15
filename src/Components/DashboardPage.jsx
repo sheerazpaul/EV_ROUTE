@@ -9,9 +9,10 @@ const DashboardPage = () => {
   const [vehicle, setVehicle] = useState(null);
   useEffect(() => {
     const savedVehicle = JSON.parse(localStorage.getItem("selectedVehicle"));
+     console.log("vehicle that fetch",savedVehicle );
     if (savedVehicle) {
       setVehicle(savedVehicle);
-    }
+    } 
   }, [])
   return (
     <div className="p-6">

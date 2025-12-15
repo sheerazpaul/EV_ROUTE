@@ -12,7 +12,7 @@ import { USER_PROFILE_URL } from "../api.config";
 
 function MyGarage() {
   const [savedVehicles, setSavedVehicles] = useState([]);
-  const [currentVehicle, setCurrentVehicle] = useState(null);
+  const [currentVehicle, setCurrentVehicle] = useState("");
 
   useEffect(() => {
     const fetchSavedVehicles = async () => {
@@ -41,8 +41,6 @@ function MyGarage() {
       const updatedVehicles = savedVehicles.filter(
         (v) => v.id !== currentVehicle.id
       );
-
-   
       const res = await fetch(USER_PROFILE_URL, {
         method: "PATCH",
         headers: {
@@ -81,7 +79,7 @@ function MyGarage() {
               onClick={() => setCurrentVehicle(vehicle)}
             >
               <img
-                src={vehicle.image || "/images/car-3.jpg"}
+                src={vehicle.image || "/images/car-9.jpg"}
                 alt={`${vehicle.brand} ${vehicle.model}`}
                 className="w-full h-24 object-cover rounded-t-lg"
               />
@@ -100,7 +98,7 @@ function MyGarage() {
           <div className="flex justify-center items-center flex-col mt-5 gap-1">
             <img
               className="w-[130px] h-[130px] object-cover rounded-sm"
-              src={currentVehicle.image || "/images/car-3.jpg"}
+              src={currentVehicle.image || "/images/car-9.jpg"}
               alt=""
             />
             <h1 className="dark:text-white text-gray-900 font-bold">
@@ -143,7 +141,7 @@ function MyGarage() {
           </div>
 
           <button
-            className="absolute top-2 right-2 bg-red-600 text-white p-2 rounded-full hover:bg-red-700"
+            className="absolute top-2 right-2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700"
             onClick={handleRemoveVehicle}
           >
             <FontAwesomeIcon icon={faTrash} />

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Outlet, Link } from "react-router-dom";
 import { Button, User } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,23 +13,23 @@ import {
 import { useAuth } from "../Components/AuthContext";
 import ThemeToggle from "../Components/ThemeToggle";
 import { BASE_URL } from "../api.config";
+
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const [avatarPreview, setAvatarPreview] = useState("");
-  console.log("User profile in Dashboard:", user);
+
   useEffect(() => {
     if (user?.profile_image) {
-      console.log("profile_image:", BASE_URL,user?.profile_image);
       setAvatarPreview(`${BASE_URL}${user.profile_image}`);
     } else {
       setAvatarPreview("https://i.pravatar.cc/150?u=default");
     }
   }, [user]);
-  console.log("Avatar preview URL:", avatarPreview);
 
   const handleLogout = () => {
     logout();
   };
+
   const menuItems = [
     { name: "Dashboard", icon: faBorderAll, to: "home" },
     { name: "Live Map", icon: faMap, to: "map" },
@@ -39,9 +39,9 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="h-full w-full dark:bg-[#101922] bg-white overflow-x-hidden">
+    <div className="min-h-screen w-full dark:bg-[#101922] bg-white overflow-x-hidden">
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="h-auto lg:h-[700px] w-full lg:w-[220px] flex flex-col border border-gray-600 shadow-lg rounded-md p-4">
+        <div className="lg:h-[700px] w-full lg:w-[220px] flex flex-col border border-gray-600 shadow-lg rounded-md p-4">
           <Link
             to="/"
             className="text-xl font-bold dark:text-white text-gray-900 mb-4"
@@ -49,36 +49,36 @@ const Dashboard = () => {
             EV Route
           </Link>
 
-          <div className="flex flex-col gap-3 h-auto">
+          <div className="flex flex-col gap-3">
             {menuItems.map((item) => (
-              <NavLink
+              <Button
                 key={item.to}
+                as={NavLink}
                 to={item.to}
+                variant="light"
+                startContent={<FontAwesomeIcon icon={item.icon} />}
                 className={({ isActive }) =>
-                  `font-semibold dark:text-white text-white${
-                    isActive ? " dark:bg-blue-900 rounded-md bg-gray-900" : ""
-                  }`
+                  `w-full justify-start font-semibold
+                  ${
+                    isActive
+                      ? "bg-gray-900 dark:bg-blue-900 text-white"
+                      : "bg-blue-600 dark:bg-gray-800 text-gray-900 dark:text-white"
+                  }
+                  hover:bg-blue-200 dark:hover:bg-gray-700`
                 }
               >
-                <Button
-                  variant="light"
-                  startContent={<FontAwesomeIcon icon={item.icon} />}
-                  className="w-full text-left dark:text-white text-gray-900 font-semibold bg-blue-600 hover:bg-blue-200 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                  {item.name}
-                </Button>
-              </NavLink>
+                {item.name}
+              </Button>
             ))}
           </div>
 
-          <div className="mt-4 lg:mt-auto gap-4">
-            <hr className="text-gray-800" />
-            {user && user.user ? (
-              <div className="flex flex-col items-center gap-2 mt-2">
-                <input type="file" accept="image/*" className="hidden" />
+          <div className="mt-4 lg:mt-auto">
+            <hr className="my-2 border-gray-700" />
+
+            {user?.user ? (
+              <div className="flex flex-col items-center gap-2">
                 <User
-                  className="mt-2 cursor-pointer"
-                  avatarProps={{ src: avatarPreview, alt: "User Avatar" }}
+                  avatarProps={{ src: avatarPreview }}
                   name={`${user.user.first_name} ${user.user.last_name}`}
                   description={user.user.email}
                 />
@@ -90,9 +90,9 @@ const Dashboard = () => {
             )}
 
             <Button
-              color="primary"
+              type="button"
               variant="light"
-              className="font-semibold dark:text-white text-gray-900 hover:text-blue-800 mt-2 ml-6 mb-2"
+              className="font-semibold dark:text-white text-gray-900 m-2"
               startContent={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
               onPress={handleLogout}
             >
