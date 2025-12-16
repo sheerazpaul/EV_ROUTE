@@ -179,7 +179,7 @@ function Garage() {
       <div className="flex mb-2 justify-center md:ml-[720px]">
         <Button
           color="primary"
-          className="font-semibold"
+          className="font-semibold mt-2"
           onPress={handleSaveVehicle}
         >
           Add to My Garage

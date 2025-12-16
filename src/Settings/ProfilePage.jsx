@@ -134,15 +134,18 @@ function ProfilePage() {
   if (loading) return <p className="text-gray-800 dark:text-gray-200">Loading profile...</p>;
 
   return (
-    <div className="bg-white dark:bg-[#101922] p-5 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 h-[550px] w-[450px] ml-40 ">
-      <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Profile</h2>
+    <div className="bg-white dark:bg-[#101922] p-4 sm:p-5 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700
+                    w-full max-w-md mx-auto md:ml-40 h-auto md:h-[550px]">
+      <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-white">
+        Profile
+      </h2>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-4 sm:gap-5">
         <div className="flex flex-col items-center gap-2">
           <img
             src={previewImage}
             alt="Profile"
-            className="w-20 h-20 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600 shadow-md mb-1"
+            className="w-20 h-20 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600 shadow-md"
           />
           <input
             type="file"
@@ -158,7 +161,6 @@ function ProfilePage() {
           />
         </div>
 
-     
         <input
           type="text"
           value={userData.user.first_name}
@@ -194,7 +196,6 @@ function ProfilePage() {
           className="p-2 text-sm border rounded-lg dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-      
         <button
           onClick={handleSaveProfile}
           disabled={saving}
@@ -209,7 +210,7 @@ function ProfilePage() {
 
         <button
           onClick={handleImageUpload}
-          className="mt-1 py-2 rounded-lg w-full text-sm font-semibold bg-green-600 hover:bg-green-700 text-white transition-all"
+          className="py-2 rounded-lg w-full text-sm font-semibold bg-green-600 hover:bg-green-700 text-white transition-all"
         >
           Upload Image
         </button>

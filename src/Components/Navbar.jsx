@@ -16,7 +16,7 @@ const {logout} = useAuth();
     "
     >
       <Link to="/">
-        <div className="text-xl font-bold">EV Route</div>
+        <div className="text-xl font-bold hover:text-blue-700 transition">EV Route</div>
       </Link>
       <div className="hidden md:flex space-x-8 font-medium">
         <Link
@@ -60,13 +60,13 @@ const {logout} = useAuth();
           <>
         <button
           onClick={() => navigate("/dashboard/home")}
-          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center cursor-pointer"
+          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800  flex justify-center items-center cursor-pointer "
         >
           Dashboard
         </button>
         <button
           onClick={logout}
-          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800 transition flex justify-center items-center cursor-pointer"
+          className="h-10 w-24 dark:bg-gray-600 bg-blue-600 rounded-lg font-semibold dark:hover:bg-gray-800  flex justify-center items-center cursor-pointer"
         >
         Log Out
         </button>

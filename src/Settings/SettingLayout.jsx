@@ -6,7 +6,8 @@ import AccountPrivacy from "./AccountPrivacy";
 import DevicePermissions from "./DevicePremission";
 import { Button } from "@heroui/react";
 import { useNavigate } from "react-router-dom";
-import Garage from './Garage';
+import Garage from "./Garage";
+
 export default function SettingsLayout() {
   const [activePage, setActivePage] = useState("profile");
   const navigate = useNavigate();
@@ -30,20 +31,20 @@ export default function SettingsLayout() {
   ];
 
   return (
-    <div className="flex w-full h-[730px] bg-gray-100 dark:bg-[#0F172A] ">
+    <div className="flex flex-col md:flex-row w-full min-h-screen bg-gray-100 dark:bg-[#0F172A]">
       
-   
-      <div className="w-64 bg-white dark:bg-gray-900 border-r border-gray-300 dark:border-gray-700 p-6 shadow-sm">
-        <h1 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
+      {/* Sidebar */}
+      <div className="md:w-64 w-full bg-white dark:bg-gray-900 border-b md:border-b-0 md:border-r border-gray-300 dark:border-gray-700 p-4 md:p-6 shadow-sm">
+        <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-gray-900 dark:text-white text-center md:text-left">
           Settings
         </h1>
 
-        <nav className="flex flex-col gap-2">
+        <nav className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible">
           {links.map((link) => (
             <button
               key={link.id}
               onClick={() => setActivePage(link.id)}
-              className={`px-4 py-3 rounded-xl text-left font-medium transition-all duration-200
+              className={`whitespace-nowrap px-4 py-2 md:py-3 rounded-xl text-left font-medium transition-all duration-200
                 ${
                   activePage === link.id
                     ? "bg-blue-600 text-white shadow-md"
@@ -57,12 +58,12 @@ export default function SettingsLayout() {
         </nav>
       </div>
 
-    
-      <div className="flex-1 p-6 overflow-y-auto">
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg h-full">
+      {/* Content */}
+      <div className="flex-1 p-3 md:p-6 overflow-y-auto">
+        <div className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg min-h-full">
           {pages[activePage]}
 
-          <div className="mt-9 flex justify-end">
+          <div className="mt-6 md:mt-9 flex justify-end">
             <Button
               variant="light"
               className="px-4 py-3 font-semibold rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all text-gray-800 dark:text-gray-200"
